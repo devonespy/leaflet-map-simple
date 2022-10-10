@@ -1,50 +1,167 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>leaflet-map-simple</title>
+  <title>Travel List</title>
+  <meta charset="utf-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
 
-  <!-- Load Leaflet code library: see http://leafletjs.com/download.html -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-  <!-- Position the map and title with Cascading Style Sheet (CSS) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
   <style>
-  body { margin:0; padding:0; }
-  #map { position: absolute; top:0; bottom:0; right:0; left:0; }
-  #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }
+    html,
+    body {
+      height: 100%;
+    }
+    
+    #map {
+      height: 75%;
+    }
+    
+    .legend {
+      border: 1px solid white;
+      font-weight: bold;
+      color: black;
+      text-align: left;
+      width: 200px;
+      height: 60px;
+      line-height: 10px;
+      background: white;
+      opacity: 1;
+    }
+    
+    .legend i {
+      width: 50px;
+      height: 50px;
+      float: left;
+      margin-right: 0px;
+      opacity: 0.7;
+    }
+    
+    .legend .square2 {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin-top: 4px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">EDIT map title</div>
-  <div id="map"></div>
+ <div id="map" style="width: 800px; height: 600px" ></div>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script>
+      var map = L.map('map').setView([31,-37.8],3); 
+      L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+       attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+       subdomains: 'abcd',
+       minZoom: 0,
+       maxZoom: 20,
+       ext: 'png'
+      }).addTo(map);
+      var home = L.icon({
+        iconUrl: 'images/home.png',
+        iconSize: [24,24],
+        iconAnchor:  [12, 24], // point of the icon which will correspond to marker's location
+        popupAnchor: [-3, -62]  // the same for the shadow
+      });
+      var visited = L.icon({
+        iconUrl: 'images/pin.png',
+        iconSize: [24,24],
+        iconAnchor:  [12,24], // point of the icon which will correspond to marker's location
+        popupAnchor: [-3, -62]  // the same for the shadow
+      });
+      // Places I've lived
+const marker1 = L.marker([27.950575, -82.457176], {icon: home})
+    .bindPopup('Tampa, Florida')
+    .addTo(map);
+const marker2 = L.marker([39.095551, -76.757683], {icon:home})
+    .bindPopup('Fort Meade, Maryland')
+    .addTo(map);
+const marker3 = L.marker([48.777111, 9.180770], {icon:home})
+    .bindPopup('Stuttgart, Germany')
+    .addTo(map);
+const marker4 = L.marker([32.237171, -80.860619], {icon:home})
+    .bindPopup('Bluffton, South Carolina')
+    .addTo(map);
+const marker5 = L.marker([27.945271, -82.250298], {icon:home})
+    .bindPopup('Valrico, Florida')
+    .addTo(map);
+const marker6 = L.marker([32.776470, -79.931030], {icon:home})
+    .bindPopup('Charleston, South Carolina')
+    .addTo(map);
+const marker7 = L.marker([34.749432, -77.421997], {icon:home})
+    .bindPopup('Jacksonville, North Carolina')
+    .addTo(map);
+const marker8 = L.marker([33.747559, -116.967323], {icon:home})
+    .bindPopup('Hemet, California')
+    .addTo(map); 
+const nyc = L.marker([40.712776, -74.005974], {icon:home})
+    .bindPopup('New York, New York')
+    .addTo(map); 
 
-  <!-- Create the interactive map content with JavaScript (.js) -->
-  <script>
+    // Places i've traveld to
+const accra = L.marker([5.603717, -0.186964], {icon: visited})
+    .bindPopup('Accra, Ghana')
+    .addTo(map);
+const kumasi = L.marker([6.666600, -1.616271], {icon:visited})
+    .bindPopup('Kumasi, Ghana')
+    .addTo(map);
+const bolgatanga = L.marker([10.714820, -0.766170], {icon:visited})
+    .bindPopup('Bolgatanga, Ghana')
+    .addTo(map);
+const mole = L.marker([9.260970, -1.853310], {icon:visited})
+    .bindPopup('Mole, Ghana')
+    .addTo(map);
+const lisbon = L.marker([38.722252, -9.139337], {icon:visited})
+    .bindPopup('Lisbon, Portugal')
+    .addTo(map);
+const lagos = L.marker([37.101910, -8.673240], {icon:visited})
+    .bindPopup('Lagos, Portugal')
+    .addTo(map);
+const Madrid = L.marker([40.416775, -3.703790], {icon:visited})
+    .bindPopup('Madrid, Spain')
+    .addTo(map);
+const Granada = L.marker([37.176479, -3.597940], {icon:visited})
+    .bindPopup('Granada, Spain')
+    .addTo(map);
+const Bilbao = L.marker([43.263012, -2.934985], {icon:visited})
+    .bindPopup('Bilbao, Spain')
+    .addTo(map);
+const biarritz = L.marker([43.482231, -1.560850], {icon:visited})
+    .bindPopup('Biarritz, France')
+    .addTo(map);
+const Bordeaux = L.marker([44.834999, -0.575490], {icon:visited})
+    .bindPopup('Bordeaux, France')
+    .addTo(map);
+const prague = L.marker([50.087811, 14.420460], {icon:visited})
+    .bindPopup('Prague, Czechia')
+    .addTo(map);
+const london = L.marker([51.507351, -0.127758], {icon:visited})
+    .bindPopup('London, UK')
+    .addTo(map);
+const bangkok = L.marker([13.756331, 100.501762], {icon:visited})
+    .bindPopup('Bangkok, Thailand')
+    .addTo(map);
+const kohtao = L.marker([10.099430, 99.830040], {icon:visited})
+    .bindPopup('Koh Tao, Thailand')
+    .addTo(map);
+const athens = L.marker([37.983810, 23.727539], {icon:visited})
+    .bindPopup('Athens,Greece')
+    .addTo(map);
+const Milos = L.marker([36.743889, 24.423260], {icon:visited})
+    .bindPopup('Milos,Greece')
+    .addTo(map);
 
-  /* Set up the initial map center and zoom level */
-  var map = L.map('map', {
-    center: [41.77, -72.69], // EDIT coordinates to re-center map
-    zoom: 12,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
-    scrollWheelZoom: false,
-    tap: false
-  });
-
-  /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
-  L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://osm.org/copyright">\
-        OpenStreetMap</a> contributors, &copy;\
-        <a href="https://carto.com/attribution">CARTO</a>'
-  }).addTo(map);
-
-  /* Display a point marker with pop-up text */
-  L.marker([41.77, -72.69]).addTo(map) // EDIT marker coordinates
-  .bindPopup("Insert pop-up text here"); // EDIT pop-up text message
-
-  </script>
+//legend//
+var legend = L.control({
+    position: 'topright'
+});
+legend.onAdd = function(map){
+    var div = L.DomUtil.create('div', 'legend');
+    div.innerHTML += '<img src="images/home.png" /> Places I have lived <br /><img src="images/pin.png" />Places I have traveled to <br />';
+    return div;
+};
+legend.addTo(map);
+    </script>
 </body>
 </html>
